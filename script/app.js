@@ -1,10 +1,10 @@
 $(function(){
     //Codigo Jquery
     console.log('Jquery funcionando')
-
+    listarContactos()
     function listarContactos(){
         $.ajax({
-            url:'contact_list.php',
+            url:'../agenda-ajax/controller/contact_list.php',
             type:'GET',
             success:function(response){
                 console.log(response)
@@ -12,13 +12,14 @@ $(function(){
                 let template = ''
                 contacts.forEach(contact => {
                     template += `
-                    <tr task_id="${contact.id_usuario}">
-                        <td>${contact.nombre}</td>
-                        <td><a href="#" class="task-item">${contact.direccion}</a></td>
-                        <td>${contact.correo}</td>
+                    <tr>
+                        <td>${contact.id_user}</td>
+                        <td>${contact.name}</td>
+                        <td>${contact.direction}</td>
+                        <td>${contact.email}</td>
                         <td>
-                            <button class="btn btn-danger task-delete">
-                                Delete
+                            <button class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i>
                             </button>
                         </td>
                     </tr>`
