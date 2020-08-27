@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda</title>
-    <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.css"/>
-</head>
-<body>
-    <nav class="navbar navbar-dark bg-primary">
-        <a href="/" class="navbar-brand">
-            Agenda de Contactos
-        </a>
-    </nav>
+<?php include 'partials/header.php'; ?>
     <div class="container">
         <div class="row mt-4">
             <div class="col-md-4">
@@ -43,9 +30,9 @@
                             <th class="text-white">Accion</th>
                         </tr> 
                     </thead>
+                    <tbody id="list-contact"></tbody>
                 </table>
             </div>
         </div>
     </div>
-</body>
-</html>
+<?php include 'partials/footer.php'; ?>
