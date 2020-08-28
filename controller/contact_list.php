@@ -13,7 +13,8 @@ while($row = mysqli_fetch_array($results)){
         'id_user'=> $row['id_usuario'],
         'name' => $row['nombre'],
         'direction' => $row['direccion'],
-        'email' => $row['correo']
+        'email' => $row['correo'],
+        'phone' => $row['telefono']
     );
 }
 $json_string = json_encode($json);
