@@ -9,7 +9,7 @@ if(!$results){
 }
 $json = array();
 while($row = mysqli_fetch_array($results)){
-    $json[] = array(
+    $json["data"][] = array(
         'id_user'=> $row['id_usuario'],
         'name' => $row['nombre'],
         'direction' => $row['direccion'],

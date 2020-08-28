@@ -9,13 +9,16 @@
                                 <input type="text" class="form-control" name="name" id="name" placeholder="Ingresar Nombre">
                             </div>
                             <div class="form-group">
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Ingresar Telefono">
+                            </div>  
+                            <div class="form-group">
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Ingresar Correo">
                             </div>  
                             <div class="form-group">
                                 <textarea name="direction" id="direction" name="direction" class="form-control" placeholder="Ingresar Direccion" cols="20" rows="8"></textarea>
                             </div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" id="save">Guardar Contacto</button>
                         </form>
-                        <button class="btn btn-primary btn-lg btn-block" id="save">Guardar Contacto</button>
                     </div>
                 </div>
             </div>

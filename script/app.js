@@ -1,39 +1,61 @@
 $(function(){
     //Codigo Jquery
     console.log('Jquery funcionando')
-    $('#table-contact').DataTable({
-        "language": {
-            "decimal":        ".",
-            "emptyTable":     "No hay datos para mostrar",
-            "info":           "del _START_ al _END_ (_TOTAL_ total)",
-            "infoEmpty":      "del 0 al 0 (0 total)",
-            "infoFiltered":   "(filtrado de todas las _MAX_ entradas)",
-            "infoPostFix":    "",
-            "thousands":      "'",
-            "lengthMenu":     "Mostrar _MENU_ entradas",
-            "loadingRecords": "Cargando...",
-            "processing":     "Procesando...",
-            "search":         "Buscar:",
-            "zeroRecords":    "No hay resultados",
-            "paginate": {
-                "first":      "Primero",
-                "last":       "Último",
-                "next":       "Siguiente",
-                "previous":   "Anterior"
+    
+    let listar = function(){
+        $('#table-contact').DataTable({
+            "ajax":{
+                "url":"../agenda-ajax/controller/contact_list.php",
+                "method":"GET"
             },
-            "aria": {
-                "sortAscending":  ": ordenar de manera Ascendente",
-                "sortDescending": ": ordenar de manera Descendente ",
-            }
+            "columns":[
+                {"data":"id_user"},
+                {"data":"name"},
+                {"data":"phone"},
+                {"data":"email"},
+                {"data":"direction"},
+                {"defaultContent":"<button class='btn btn-danger'><i class='fas fa-trash-alt'></i></button>"}
+            ],
+            "language": idioma
+        });
+        
+    }
+    let idioma = {
+        "sProcessing":     "Procesando...",
+        "sLengthMenu":     "Mostrar _MENU_ registros",
+        "sZeroRecords":    "No se encontraron resultados",
+        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix":    "",
+        "sSearch":         "Buscar:",
+        "sUrl":            "",
+        "sInfoThousands":  ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+            "sFirst":    "Primero",
+            "sLast":     "Último",
+            "sNext":     "Siguiente",
+            "sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        },
+        "buttons": {
+            "copy": "Copiar",
+            "colvis": "Visibilidad"
         }
-    })
-    listarContactos()
-    function listarContactos(){
+    }
+
+    listar()
+    
+    /*function listarContactos(){
         $.ajax({
             url:'../agenda-ajax/controller/contact_list.php',
             type:'GET',
             success:function(response){
-                console.log(response)
                 let contacts = JSON.parse(response)
                 let template = ''
                 contacts.forEach(contact => {
@@ -54,5 +76,29 @@ $(function(){
                 $('#list-contact').html(template)
             }
         })
-    }
+    }*/
+
+    //Agregar contacto
+    $('#form-contact').submit(function(e){
+        const datos ={
+            name: $('#name').val(),
+            phone: $('#phone').val(),
+            email: $('#email').val(),
+            direction: $('#direction').val()
+        }
+        $.post('../agenda-ajax/controller/contact_add.php', datos,function(response){
+            if(response == 'true'){
+                swal("Contacto registrado", "El contacto fue registrado con exito", "success");
+                
+            }else{
+                swal("Campos requeridos", "Rellene toda la informacion del formulario", "warning");
+            }
+            listar()
+            $('#form-contact').trigger('reset')
+            
+        })
+        e.preventDefault()
+        
+    })
+
 })
