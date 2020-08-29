@@ -14,7 +14,7 @@ if(!empty($name) && !empty($phone) && !empty($email) && !empty($direction)){
     if(!$results){
         die('Query Failed'.mysqli_error($connection));
     }
-    echo 'true';
+    echo 'add';
 }else{
     echo 'false';
 }

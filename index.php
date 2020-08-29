@@ -1,10 +1,11 @@
 <?php include 'partials/header.php'; ?>
     <div class="container">
         <div class="row mt-4">
-            <div class="col-md-4 mr-5">
+            <div class="col-md-3 mr-5">
                 <div class="card">
                     <div class="card-body">
                         <form id="form-contact">
+                            <input type="hidden" name="id" id="id_user">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="name" id="name" placeholder="Ingresar Nombre">
                             </div>
@@ -22,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <table class="table table-bordered table-hover" id="table-contact">
                     <thead class="bg-primary">
                         <tr>
